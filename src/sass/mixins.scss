@@ -1,0 +1,14 @@
+@import "variables.scss";
+
+@mixin episode-list-item{
+    font-family: $primary-font;
+    font-size: 12px;
+}
+
+@mixin title{
+    font-family: $primary-font;
+    font-size: 22px;
+    font-weight: 700;
+    padding: 1rem;
+
+}

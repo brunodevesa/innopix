@@ -1,17 +1,36 @@
+@import '../../sass/mixins.scss';
+
 .show-container{
+    padding: 1rem;
+
+    font-family: $primary-font;
     .title{
-        color: red;
+        @include title;
     }
     .card{
         max-height: 50rem;
-        width: 20rem;
+        max-width: 35rem;
+        
         .image{
-          
+            padding: 1rem
         }
+    }
+    img{
+        padding-bottom: 1rem;
+    }
+ 
+    .pagination-container{
+        ul{
+            list-style: none;
+        }
+        @include episode-list-item;
     }
 
     .episode-list-container {
+        @include episode-list-item;
+        margin-bottom: 10px;
+        overflow: overlay;
         max-height: 15rem;
-        overflow: auto;
+        
     }
 }

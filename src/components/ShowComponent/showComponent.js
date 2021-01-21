@@ -32,22 +32,33 @@ const Show = (props) => {
 
     console.log(episodesBySeason);
     const data = show.data;
-    let show_id =show.data.id;
+    let show_id = show.data.id;
 
     return (
       <div className="show-container d-flex flex-column justify-content-center align-items-center">
-        <div className="card d-flex justify-content-center">
-          <div className="image text-center">
-            <img src={data.image.medium} alt="ima" weight={data.weight} />
-          </div>
-          <div className="card-bod">
-            <div className="card-title">{data.name}</div>
-            <div className="card-text"></div>
-            <div className="pagination-container">
-              <Pagination currentSeason={currentSeason} setCurrentSeason={setCurrentSeason} episodes={episodesBySeason} />
+        <div className="card w-100">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div className="title">{data.name}</div>
+              </div>
             </div>
-            <div className="episode-list-container">
-              <EpisodeListBySeason show_id={show_id} season={currentSeason} episodes={episodesBySeason} />
+            <div className="row p-1">
+              <div class="w-100"></div>
+              <div class="col-12 col-md-6">
+                <img src={data.image.medium} alt="ima" weight={data.weight} />
+              </div>
+              <div class="col-12 col-md-6">
+                <div className="info-container">
+                  <div className="pagination-container">
+                    <Pagination currentSeason={currentSeason} setCurrentSeason={setCurrentSeason} episodes={episodesBySeason} />
+                  </div>
+
+                  <div className="episode-list-container">
+                    <EpisodeListBySeason show_id={show_id} season={currentSeason} episodes={episodesBySeason} />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -62,6 +73,20 @@ const Show = (props) => {
     );
   }
 };
+
+//    <div className="image text-center">
+//                   <img src={data.image.medium} alt="ima" weight={data.weight} />
+//                 </div>
+//                 <div className="card-body">
+//                   <div className="card-title title">{data.name}</div>
+//                   <div className="card-text"></div>
+//                   <div className="pagination-container">
+//                     <Pagination currentSeason={currentSeason} setCurrentSeason={setCurrentSeason} episodes={episodesBySeason} />
+//                   </div>
+//                   <div className="episode-list-container">
+//                     <EpisodeListBySeason show_id={show_id} season={currentSeason} episodes={episodesBySeason} />
+//                   </div>
+//                 </div>
 
 /**
  * function to group episodes by their seasons so the episodes
@@ -80,19 +105,20 @@ function parseEpisodesBySeason(data) {
   return episodesBySeason;
 }
 
-
 /**
  * Functional component to render the season's episodes. The episodes have a Link to redirect the route to the Details component
- * @param {Object} props 
+ * @param {Object} props
  */
 const EpisodeListBySeason = (props) => {
-  return props.episodes[props.season].map((elem) => {
+  return props.episodes[props.season].map((elem, index) => {
     return (
-      <div className="episode-list-container overflow-auto" key={shortid.generate()}>
-        <ul className="list-group">
-          <li className="list-group-item">
+      <div className="episode-list" key={shortid.generate()}>
+        <ul className="">
+          <li className="d-flex">
             <Link to={`/shows/${props.show_id}/season/${elem.season}/episode/${elem.number}`}>
-              <div>{elem.name}</div>
+              <div>
+                {index + 1} {elem.name}
+              </div>
             </Link>
           </li>
         </ul>
@@ -102,21 +128,21 @@ const EpisodeListBySeason = (props) => {
 };
 
 /**
- * Functional component to render the pagination of the seasons, which is set dinamycally according to the 
+ * Functional component to render the pagination of the seasons, which is set dinamycally according to the
  * backend response. This component use and share the component's state for access and set the currentSeason.
- * @param {Object} props 
+ * @param {Object} props
  */
 const Pagination = (props) => {
-
   function handleGoToSeason(season) {
     console.log("ive been clicked");
     props.setCurrentSeason(season);
   }
   return (
-    <div>
-      <ul className="pagination">
+    <div className="pagination-container">
+      <div>Seasons</div>
+      <ul className="d-flex justify-content-center">
         <li className="page-item" key={shortid.generate()}>
-          <a className="page-link">Previous</a>
+          <a className="page-link">Prev</a>
         </li>
         {props.episodes.map((elem, index) => {
           return (
@@ -136,6 +162,5 @@ const Pagination = (props) => {
     </div>
   );
 };
-
 
 export default Show;
