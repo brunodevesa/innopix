@@ -2,4 +2,12 @@
     .title{
         color: red;
     }
+    .card{
+        max-height: 50rem;
+    }
+
+    .episode-list-container {
+        max-height: 15rem;
+        overflow: auto;
+    }
 }
