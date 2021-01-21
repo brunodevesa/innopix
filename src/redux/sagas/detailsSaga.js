@@ -17,7 +17,7 @@ function* fetchDetail(action) {
   try {
     console.log("action.payload :", action.payload);
     let query = action.payload;
-    const url = `http://api.tvmaze.com/shows/${query.show}/episodebynumber?season=${query.season}&number=${query.episode}`;
+    const url = `https://api.tvmaze.com/shows/${query.show}/episodebynumber?season=${query.season}&number=${query.episode}`;
 
     const data = yield call(getApi, url);
 

@@ -4,7 +4,7 @@ import * as type from "../types";
 let showName = "Powerpuff Girls";
 let showNameUncoded = decodeURI(showName);
 
-const url_single_search = `http://api.tvmaze.com/singlesearch/shows?q=${showNameUncoded}`;
+const url_single_search = `https://api.tvmaze.com/singlesearch/shows?q=${showNameUncoded}`;
 
 /**
  * Generic fetch function to perform http requests from external api.
@@ -23,7 +23,7 @@ function getApi(url) {
  * @param {Number} episode_id 
  */
 function fetchEpisodes(episode_id) {
-  const url_episodes_search = `http://api.tvmaze.com/shows/${episode_id}/episodes`;
+  const url_episodes_search = `https://api.tvmaze.com/shows/${episode_id}/episodes`;
   return fetch(url_episodes_search)
     .then((res) => res.json())
     .catch((err) => {
