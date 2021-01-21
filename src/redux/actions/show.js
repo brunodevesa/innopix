@@ -6,3 +6,11 @@ export function getShow(show) {
     payload: show,
   };
 }
+
+
+export function getEpisodeByNumber(episode) {
+  return {
+    type: type.GET_DETAILS_REQUESTED,
+    payload: episode,
+  };
+}

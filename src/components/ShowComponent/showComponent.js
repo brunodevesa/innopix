@@ -32,25 +32,25 @@ const Show = (props) => {
 
     console.log(episodesBySeason);
     const data = show.data;
-    let show_id = props.show_id;
+    let show_id =show.data.id;
 
     return (
       <div className="show-container d-flex flex-column justify-content-center align-items-center">
-        <div className="card">
-          <img src={data.image.medium} alt="ima" weight={data.weight} />
+        <div className="card d-flex justify-content-center">
+          <div className="image text-center">
+            <img src={data.image.medium} alt="ima" weight={data.weight} />
+          </div>
           <div className="card-bod">
             <div className="card-title">{data.name}</div>
             <div className="card-text"></div>
-                <div className="pagination-container">
-                    <Pagination currentSeason={currentSeason} setCurrentSeason={setCurrentSeason} episodes={episodesBySeason} />
-                </div>
-                <div className="episode-list-container">
-
-                <EpisodeListBySeason show_id={show_id} season={currentSeason} episodes={episodesBySeason} />
-                </div>
+            <div className="pagination-container">
+              <Pagination currentSeason={currentSeason} setCurrentSeason={setCurrentSeason} episodes={episodesBySeason} />
+            </div>
+            <div className="episode-list-container">
+              <EpisodeListBySeason show_id={show_id} season={currentSeason} episodes={episodesBySeason} />
+            </div>
           </div>
         </div>
-
       </div>
     );
   } else {
@@ -88,7 +88,7 @@ function parseEpisodesBySeason(data) {
 const EpisodeListBySeason = (props) => {
   return props.episodes[props.season].map((elem) => {
     return (
-      <div className="episode-list-container overflow-auto">
+      <div className="episode-list-container overflow-auto" key={shortid.generate()}>
         <ul className="list-group">
           <li className="list-group-item">
             <Link to={`/shows/${props.show_id}/season/${elem.season}/episode/${elem.number}`}>
