@@ -5,9 +5,11 @@ let showName = "Powerpuff Girls";
 let showNameUncoded = decodeURI(showName);
 
 const url_single_search = `http://api.tvmaze.com/singlesearch/shows?q=${showNameUncoded}`;
-// const url_episodes_search = `http://api.tvmaze.com/shows/${episode_id}/episodes`;
-// const url_episodes_detail = `http://api.tvmaze.com/shows/PowerPuff%20Girls/${episode_id}?season=:season&number=${season_id}`;
 
+/**
+ * Generic fetch function to perform http requests from external api.
+ * @param {String} url 
+ */
 function getApi(url) {
   return fetch(url)
     .then((res) => res.json())
@@ -16,6 +18,10 @@ function getApi(url) {
     });
 }
 
+/**
+ * Fetch episodes by id from api.
+ * @param {Number} episode_id 
+ */
 function fetchEpisodes(episode_id) {
   const url_episodes_search = `http://api.tvmaze.com/shows/${episode_id}/episodes`;
   return fetch(url_episodes_search)
@@ -25,7 +31,10 @@ function fetchEpisodes(episode_id) {
     });
 }
 
-
+/**
+ * Fetch show data from api.
+ * @param {Object} action 
+ */
 function* fetchShow(action) {
   try {
     const data = yield call(getApi, url_single_search);

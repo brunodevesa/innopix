@@ -9,6 +9,10 @@ function getApi(url) {
     });
 }
 
+/**
+ * fetch episode details from api
+ * @param {Object} action 
+ */
 function* fetchDetail(action) {
   try {
     console.log("action.payload :", action.payload);

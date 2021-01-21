@@ -1,36 +1,65 @@
-@import '../../sass/mixins.scss';
+@import "../../sass/mixins.scss";
+@import "../../sass/variables.scss";
 
-.show-container{
-    padding: 1rem;
+.show-container {
+  padding: 1rem;
 
-    font-family: $primary-font;
-    .title{
-        @include title;
+  font-family: $primary-font;
+  .title {
+    @include title;
+    background: $t1-primary;
+    border-bottom: 1px $t1-primary solid;
+  }
+  .summary {
+    @include summary;
+    border-bottom: 1px $t1-primary solid;
+    // background: $t1-secondary;
+    p {
+      padding: 0px;
+      margin: 0px;
     }
-    .card{
-        max-height: 50rem;
-        max-width: 35rem;
-        
-        .image{
-            padding: 1rem
-        }
-    }
-    img{
-        padding-bottom: 1rem;
-    }
- 
-    .pagination-container{
-        ul{
-            list-style: none;
-        }
-        @include episode-list-item;
-    }
+  }
+  .card {
+    max-height: 50rem;
+    max-width: 30rem;
+  }
+  img {
+    // fit image to the container
+    max-width: 100%;
+    max-height: 100%;
+  }
 
-    .episode-list-container {
-        @include episode-list-item;
-        margin-bottom: 10px;
-        overflow: overlay;
-        max-height: 15rem;
-        
+  .pagination-container {
+    padding: 0.25rem 0rem 1rem 0rem;
+    ul {
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
     }
+    a {
+      color: black;
+      text-decoration: none;
+    }
+    @include episode-list-item;
+  }
+
+  .episode-list-container {
+    @include episode-list-item;
+    // margin-bottom: 10px;
+    overflow: overlay;
+    max-height: 15rem;
+    a {
+      color: black;
+    }
+    li{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-decoration: none;
+
+    }
+    .episode:hover{
+        font-weight: 700;
+    }
+  }
 }
