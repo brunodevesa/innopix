@@ -43,7 +43,7 @@ export default function DetailsComponent(props) {
               <div className="row p-0">
                 <div class="w-100"></div>
                 <div class="col-12 col-md-6 p-0">
-                  {data.image.medium ? <img src={data.image.medium} alt="ima" weight={data.weight} /> : "No photo available.."}
+                  {data.image && data.image.medium ? <img src={data.image.medium} alt="ima" weight={data.weight} /> : "No photo available.."}
                 </div>
                 <div class="col-12 col-md-6 p-0">
                   <div className="summary">
